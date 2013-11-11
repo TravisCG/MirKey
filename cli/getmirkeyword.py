@@ -3,6 +3,15 @@
 import redis
 import sys
 
+def factorial(num):
+	fact = 1
+	for i in range(2,num):
+		fact = fact * i
+	return fact
+
+def fisher(a, b, c, d):
+	return (factorial(a+c)*factorial(b+d)*factorial(a+b)*factorial(c+d))/(factorial(a)*factorial(b)*factorial(c)*factorial(d)*factorial(a+b+c+d))
+
 def printHelp():
 	txt = """
 	Small RNA Keyword retreival
@@ -61,4 +70,5 @@ for i in keys:
 			allkeys[kw] = 1
 
 for key in keycount:
-	print(keycount[key], allkeys[key], mirnum - keycount[key], allkeynum - allkeys[key], key.decode(),sep="\t")
+	f = fisher(keycount[key], allkeys[key], mirnum - keycount[key], allkeynum - allkeys[key])
+	print(keycount[key], allkeys[key], mirnum - keycount[key], allkeynum - allkeys[key], key.decode(), f, sep="\t")
