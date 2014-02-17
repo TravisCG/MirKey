@@ -14,6 +14,8 @@ class MIR:
 		self.text = re.sub('[.,:;"]+'," ",self.text)
 		self.text = re.sub('\[', " ",self.text)
 		self.text = re.sub('\]', " ",self.text)
+		self.text = re.sub(' mir\S+', ' ', self.text)
+		self.text = re.sub(' \d+ ', ' ', self.text)
 		self.text = re.sub("\s+"," ",self.text)
 
 # read abstract file

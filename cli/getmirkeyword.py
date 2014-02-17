@@ -58,17 +58,10 @@ for line in mirlist:
 	mirnum += 1
 mirlist.close()
 
-# dirty hack later put it to db
 keys = db.keys('*')
-allkeynum = len(keys)
-allkeys = dict()
-for i in keys:
-	for kw in db.smembers(i):
-		if kw in allkeys:
-			allkeys[kw] += 1
-		else:
-			allkeys[kw] = 1
+allkeynum = len(keys)-1
 
 for key in keycount:
-	f = fisher(keycount[key], allkeys[key], mirnum - keycount[key], allkeynum - allkeys[key])
-	print(keycount[key], allkeys[key], mirnum - keycount[key], allkeynum - allkeys[key], key.decode(), f, sep="\t")
+	allkeys = int(db.hget('keywords_count', key).decode())
+	f = fisher(keycount[key], allkeys, mirnum - keycount[key], allkeynum - allkeys)
+	print(keycount[key], allkeys, mirnum - keycount[key], allkeynum - allkeys, key.decode(), f, sep="\t")
