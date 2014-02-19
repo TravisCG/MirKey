@@ -29,7 +29,7 @@ for line in f:
 			if token in blacklist:
 				print(token, "in blacklist")
 				continue # skip common words
-			if r.sadd(m.group(0), token) > 0:
+			if r.sadd('mir:' + m.group(0), token) > 0:
 				r.hincrby('keywords_count', token) # total occurence of the keywords
 	else:
 		print(mir,"skipped")

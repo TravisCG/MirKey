@@ -46,7 +46,7 @@ keycount = dict()
 mirnum = 0
 for line in mirlist:
 	mirid = line.rstrip().lower()
-	keywords = db.smembers(mirid)
+	keywords = db.smembers('mir:' + mirid)
 	if len(keywords) == 0:
 		print("This ID not found in DB",mirid, file=sys.stderr)
 		continue
@@ -58,8 +58,8 @@ for line in mirlist:
 	mirnum += 1
 mirlist.close()
 
-keys = db.keys('*')
-allkeynum = len(keys)-1
+keys = db.keys('mir:*')
+allkeynum = len(keys)
 
 for key in keycount:
 	allkeys = int(db.hget('keywords_count', key).decode())
