@@ -4,4 +4,4 @@
 
 pmid=$1
 # FIXME Be careful. This script working only in build-db.sh!
-wget -O - "http://www.ncbi.nlm.nih.gov/pubmed/?term=$pmid&report=xml&format=text" | ../pubxml.py
+wget -q -O - "http://www.ncbi.nlm.nih.gov/pubmed/?term=$pmid&report=xml&format=text" | ../pubxml.py

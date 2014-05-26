@@ -27,4 +27,7 @@ for title in xml.getElementsByTagName('ArticleTitle'):
 for text in xml.getElementsByTagName('AbstractText'):
 	output += text.firstChild.nodeValue.lower() + " "
 
-print output
+try:
+	print output
+except UnicodeEncodeError:
+	print output.encode('ascii','ignore')
