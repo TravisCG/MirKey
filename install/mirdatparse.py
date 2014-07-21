@@ -38,9 +38,9 @@ for line in f:
 	if line.startswith("RX"):
 		mir.pmid.append(line.split()[2].rstrip("."))
 	if line.startswith("CC"):
-		mir.text += line.lstrip("CC   ")
+		mir.text += line[4:]
 	if line.startswith("DE"):
-		mir.text += line.lstrip("DE   ")
+		mir.text += line[4:]
 	if line.startswith("//"):
 #		mir.simplify()
 		store[key] = mir
