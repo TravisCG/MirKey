@@ -24,8 +24,9 @@ done >abstracts.txt
 ../mirdatparse.py miRNA.dat abstracts.txt >mir_keywords.txt
 
 # load the whole stuff to Redis
-../keyputtodb.py mir_keywords.txt ../blacklist.txt
-../keyputtodb.py strippedwiki.txt ../blacklist.txt
+../mirassoc.py mir_keywords.txt >fisher.txt
+#../keyputtodb.py mir_keywords.txt ../blacklist.txt
+#../keyputtodb.py strippedwiki.txt ../blacklist.txt
 
 cd ..
-rm -fr tmp
+#rm -fr tmp
